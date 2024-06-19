@@ -43,20 +43,23 @@ public class AddMessageActivity extends AppCompatActivity {
                 addPhoto.setImageURI(CurrentImage);
             }
         });
-        addPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        addPhoto = findViewById(R.id.addPhoto);
+        if (addPhoto != null) {
+            addPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
-                    ActivityCompat.requestPermissions(AddMessageActivity.this, new String[] {
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.ACCESS_MEDIA_LOCATION
-                    }, REQUEST_PERMISSIONS_CODE);
-                } else {
-                    captureImage();
+                        ActivityCompat.requestPermissions(AddMessageActivity.this, new String[]{
+                                Manifest.permission.CAMERA,
+                                Manifest.permission.ACCESS_MEDIA_LOCATION
+                        }, REQUEST_PERMISSIONS_CODE);
+                    } else {
+                        captureImage();
+                    }
                 }
-            }
-        });
+            });
+        }
         Button btn = findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
